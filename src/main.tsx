@@ -9,13 +9,12 @@ import {ConnectKitProvider, getDefaultConfig} from "connectkit";
 
 export const config = createConfig(
     getDefaultConfig({
-        appIcon: undefined, appUrl: undefined,
+        appIcon: undefined, appUrl: "https://terminex.mempool.online",
         walletConnectProjectId: "4447c65c23be9b6fbabdc13fb5a17700",
         chains: [optimism],
         transports: {
             [optimism.id]: http()
         },
-
         appName: "Terminex",
         appDescription: "Terminex Farcaster Administration"
     })
