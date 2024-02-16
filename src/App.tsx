@@ -5,12 +5,12 @@ import {Terminex} from "./Terminex.tsx";
 
 function App() {
 
-    const { isConnecting, isConnected, isDisconnected } = useAccount();
+    const { address, isConnecting, isConnected, isDisconnected } = useAccount();
 
     return(
         isDisconnected ? <Disconnected/>
             : isConnecting ? <h3>Connecting...</h3>
-                : isConnected ? <Terminex/> : <></>
+                : isConnected ? <Terminex address={address!}/> : <></>
     )
 }
 
