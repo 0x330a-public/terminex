@@ -9,7 +9,7 @@ function App() {
 
     return(
         isDisconnected ? <Disconnected/>
-            : isConnecting ? <h3>Connecting...</h3>
+            : isConnecting ? <p className={"hero-content min-h-screen"}>Connecting...</p>
                 : isConnected ? <Terminex address={address!}/> : <></>
     )
 }
