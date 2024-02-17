@@ -9,7 +9,7 @@ export interface TerminexProps {
 }
 
 export const Terminex = ({address}: TerminexProps) => {
-    const {disconnect} = useDisconnect();
+    const {disconnectAsync} = useDisconnect();
 
     const {data:id} = useReadIdRegistryIdOf({
         args: [address]
@@ -54,7 +54,7 @@ export const Terminex = ({address}: TerminexProps) => {
                     <p className={"p-4 text-2xl font-bold"}>Terminex</p>
                 </div>
                 <div className={"flex-none btn btn-outline border-2"}>
-                    <button onClick={() => disconnect()}>Disconnect</button>
+                    <button onClick={async() => await disconnectAsync()}>Disconnect</button>
                 </div>
             </div>
             <div className={"card m-16 w-max mx-auto bg-neutral text-neutral-content shadow-xl"}>
