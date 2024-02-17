@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@noble/curves": "^1.3.0",
     "@tanstack/query-sync-storage-persister": "^5.20.5",
     "@tanstack/react-query": "^5.20.5",
     "@tanstack/react-query-persist-client": "^5.20.5",
     "connectkit": "^1.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-qr-code": "^2.0.12",
     "viem": "2.x",
     "wagmi": "^2.5.7"
   },
