@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {ed25519} from "@noble/curves/ed25519";
 
 export interface SyncModalParams {
