@@ -6,9 +6,8 @@ import {createConfig, http, WagmiProvider} from "wagmi";
 import {optimism} from "viem/chains";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {ConnectKitProvider, getDefaultConfig} from "connectkit";
-import {LightNodeProvider} from "@waku/react";
 
-const NODE_OPTIONS = {defaultBootstrap: true};
+export const CHAIN_ID = optimism.id;
 
 export const config = createConfig(
     getDefaultConfig({
@@ -27,14 +26,12 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <LightNodeProvider options={NODE_OPTIONS}>
-            <WagmiProvider config={config}>
-                <QueryClientProvider client={queryClient}>
-                    <ConnectKitProvider>
-                        <App/>
-                    </ConnectKitProvider>
-                </QueryClientProvider>
-            </WagmiProvider>
-        </LightNodeProvider>
+        <WagmiProvider config={config}>
+            <QueryClientProvider client={queryClient}>
+                <ConnectKitProvider>
+                    <App/>
+                </ConnectKitProvider>
+            </QueryClientProvider>
+        </WagmiProvider>
     </React.StrictMode>,
 )

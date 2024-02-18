@@ -1214,6 +1214,317 @@ export const idRegistryConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// KeyGateway
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const keyGatewayAbi = [
+  {
+    type: 'constructor',
+    inputs: [
+      { name: '_keyRegistry', internalType: 'address', type: 'address' },
+      { name: '_initialOwner', internalType: 'address', type: 'address' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'error',
+    inputs: [
+      { name: 'account', internalType: 'address', type: 'address' },
+      { name: 'currentNonce', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'InvalidAccountNonce',
+  },
+  { type: 'error', inputs: [], name: 'InvalidShortString' },
+  { type: 'error', inputs: [], name: 'InvalidSignature' },
+  { type: 'error', inputs: [], name: 'OnlyGuardian' },
+  { type: 'error', inputs: [], name: 'SignatureExpired' },
+  {
+    type: 'error',
+    inputs: [{ name: 'str', internalType: 'string', type: 'string' }],
+    name: 'StringTooLong',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'guardian',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Add',
+  },
+  { type: 'event', anonymous: false, inputs: [], name: 'EIP712DomainChanged' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferStarted',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Paused',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'guardian',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'Remove',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'account',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'Unpaused',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'ADD_TYPEHASH',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'VERSION',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'acceptOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'keyType', internalType: 'uint32', type: 'uint32' },
+      { name: 'key', internalType: 'bytes', type: 'bytes' },
+      { name: 'metadataType', internalType: 'uint8', type: 'uint8' },
+      { name: 'metadata', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'add',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'fidOwner', internalType: 'address', type: 'address' },
+      { name: 'keyType', internalType: 'uint32', type: 'uint32' },
+      { name: 'key', internalType: 'bytes', type: 'bytes' },
+      { name: 'metadataType', internalType: 'uint8', type: 'uint8' },
+      { name: 'metadata', internalType: 'bytes', type: 'bytes' },
+      { name: 'deadline', internalType: 'uint256', type: 'uint256' },
+      { name: 'sig', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'addFor',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'guardian', internalType: 'address', type: 'address' }],
+    name: 'addGuardian',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'domainSeparatorV4',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'eip712Domain',
+    outputs: [
+      { name: 'fields', internalType: 'bytes1', type: 'bytes1' },
+      { name: 'name', internalType: 'string', type: 'string' },
+      { name: 'version', internalType: 'string', type: 'string' },
+      { name: 'chainId', internalType: 'uint256', type: 'uint256' },
+      { name: 'verifyingContract', internalType: 'address', type: 'address' },
+      { name: 'salt', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'extensions', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'guardian', internalType: 'address', type: 'address' }],
+    name: 'guardians',
+    outputs: [{ name: 'isGuardian', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'structHash', internalType: 'bytes32', type: 'bytes32' }],
+    name: 'hashTypedDataV4',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'keyRegistry',
+    outputs: [
+      { name: '', internalType: 'contract IKeyRegistry', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
+    name: 'nonces',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pause',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'paused',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pendingOwner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'guardian', internalType: 'address', type: 'address' }],
+    name: 'removeGuardian',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'unpause',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'useNonce',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+] as const
+
+/**
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const keyGatewayAddress = {
+  10: '0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B',
+} as const
+
+/**
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const keyGatewayConfig = {
+  address: keyGatewayAddress,
+  abi: keyGatewayAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // KeyRegistry
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -2013,6 +2324,228 @@ export const keyRegistryAddress = {
 export const keyRegistryConfig = {
   address: keyRegistryAddress,
   abi: keyRegistryAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SignedKeyRequestValidator
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const signedKeyRequestValidatorAbi = [
+  {
+    type: 'constructor',
+    inputs: [
+      { name: '_idRegistry', internalType: 'address', type: 'address' },
+      { name: '_initialOwner', internalType: 'address', type: 'address' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  { type: 'error', inputs: [], name: 'InvalidShortString' },
+  {
+    type: 'error',
+    inputs: [{ name: 'str', internalType: 'string', type: 'string' }],
+    name: 'StringTooLong',
+  },
+  { type: 'event', anonymous: false, inputs: [], name: 'EIP712DomainChanged' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferStarted',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'oldIdRegistry',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+      {
+        name: 'newIdRegistry',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'SetIdRegistry',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'METADATA_TYPEHASH',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'VERSION',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'acceptOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'domainSeparatorV4',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'eip712Domain',
+    outputs: [
+      { name: 'fields', internalType: 'bytes1', type: 'bytes1' },
+      { name: 'name', internalType: 'string', type: 'string' },
+      { name: 'version', internalType: 'string', type: 'string' },
+      { name: 'chainId', internalType: 'uint256', type: 'uint256' },
+      { name: 'verifyingContract', internalType: 'address', type: 'address' },
+      { name: 'salt', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'extensions', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'metadata',
+        internalType:
+          'struct SignedKeyRequestValidator.SignedKeyRequestMetadata',
+        type: 'tuple',
+        components: [
+          { name: 'requestFid', internalType: 'uint256', type: 'uint256' },
+          { name: 'requestSigner', internalType: 'address', type: 'address' },
+          { name: 'signature', internalType: 'bytes', type: 'bytes' },
+          { name: 'deadline', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    name: 'encodeMetadata',
+    outputs: [{ name: '', internalType: 'bytes', type: 'bytes' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'structHash', internalType: 'bytes32', type: 'bytes32' }],
+    name: 'hashTypedDataV4',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'idRegistry',
+    outputs: [
+      { name: '', internalType: 'contract IdRegistryLike', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pendingOwner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '_idRegistry', internalType: 'address', type: 'address' }],
+    name: 'setIdRegistry',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: 'key', internalType: 'bytes', type: 'bytes' },
+      { name: 'signedKeyRequestBytes', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'validate',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+] as const
+
+/**
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const signedKeyRequestValidatorAddress = {
+  10: '0x00000000FC700472606ED4fA22623Acf62c60553',
+} as const
+
+/**
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const signedKeyRequestValidatorConfig = {
+  address: signedKeyRequestValidatorAddress,
+  abi: signedKeyRequestValidatorAbi,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4613,6 +5146,492 @@ export const useWatchIdRegistryUnpausedEvent =
   })
 
 /**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGateway = /*#__PURE__*/ createUseReadContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"ADD_TYPEHASH"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayAddTypehash = /*#__PURE__*/ createUseReadContract(
+  {
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'ADD_TYPEHASH',
+  },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"VERSION"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayVersion = /*#__PURE__*/ createUseReadContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+  functionName: 'VERSION',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"domainSeparatorV4"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayDomainSeparatorV4 =
+  /*#__PURE__*/ createUseReadContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'domainSeparatorV4',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"eip712Domain"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayEip712Domain =
+  /*#__PURE__*/ createUseReadContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'eip712Domain',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"guardians"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayGuardians = /*#__PURE__*/ createUseReadContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+  functionName: 'guardians',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"hashTypedDataV4"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayHashTypedDataV4 =
+  /*#__PURE__*/ createUseReadContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'hashTypedDataV4',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"keyRegistry"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayKeyRegistry = /*#__PURE__*/ createUseReadContract(
+  {
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'keyRegistry',
+  },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"nonces"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayNonces = /*#__PURE__*/ createUseReadContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+  functionName: 'nonces',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayOwner = /*#__PURE__*/ createUseReadContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"paused"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayPaused = /*#__PURE__*/ createUseReadContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+  functionName: 'paused',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"pendingOwner"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useReadKeyGatewayPendingOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'pendingOwner',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGateway = /*#__PURE__*/ createUseWriteContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"acceptOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGatewayAcceptOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'acceptOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"add"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGatewayAdd = /*#__PURE__*/ createUseWriteContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+  functionName: 'add',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"addFor"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGatewayAddFor = /*#__PURE__*/ createUseWriteContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+  functionName: 'addFor',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"addGuardian"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGatewayAddGuardian =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'addGuardian',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"pause"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGatewayPause = /*#__PURE__*/ createUseWriteContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+  functionName: 'pause',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"removeGuardian"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGatewayRemoveGuardian =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'removeGuardian',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGatewayRenounceOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGatewayTransferOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"unpause"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGatewayUnpause = /*#__PURE__*/ createUseWriteContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+  functionName: 'unpause',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"useNonce"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWriteKeyGatewayUseNonce = /*#__PURE__*/ createUseWriteContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+  functionName: 'useNonce',
+})
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGateway = /*#__PURE__*/ createUseSimulateContract({
+  abi: keyGatewayAbi,
+  address: keyGatewayAddress,
+})
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"acceptOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGatewayAcceptOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'acceptOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"add"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGatewayAdd = /*#__PURE__*/ createUseSimulateContract(
+  { abi: keyGatewayAbi, address: keyGatewayAddress, functionName: 'add' },
+)
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"addFor"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGatewayAddFor =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'addFor',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"addGuardian"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGatewayAddGuardian =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'addGuardian',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"pause"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGatewayPause =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'pause',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"removeGuardian"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGatewayRemoveGuardian =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'removeGuardian',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGatewayRenounceOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGatewayTransferOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"unpause"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGatewayUnpause =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'unpause',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link keyGatewayAbi}__ and `functionName` set to `"useNonce"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useSimulateKeyGatewayUseNonce =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    functionName: 'useNonce',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link keyGatewayAbi}__
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWatchKeyGatewayEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link keyGatewayAbi}__ and `eventName` set to `"Add"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWatchKeyGatewayAddEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    eventName: 'Add',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link keyGatewayAbi}__ and `eventName` set to `"EIP712DomainChanged"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWatchKeyGatewayEip712DomainChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    eventName: 'EIP712DomainChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link keyGatewayAbi}__ and `eventName` set to `"OwnershipTransferStarted"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWatchKeyGatewayOwnershipTransferStartedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    eventName: 'OwnershipTransferStarted',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link keyGatewayAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWatchKeyGatewayOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link keyGatewayAbi}__ and `eventName` set to `"Paused"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWatchKeyGatewayPausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    eventName: 'Paused',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link keyGatewayAbi}__ and `eventName` set to `"Remove"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWatchKeyGatewayRemoveEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    eventName: 'Remove',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link keyGatewayAbi}__ and `eventName` set to `"Unpaused"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B)
+ */
+export const useWatchKeyGatewayUnpausedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: keyGatewayAbi,
+    address: keyGatewayAddress,
+    eventName: 'Unpaused',
+  })
+
+/**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link keyRegistryAbi}__
  *
  * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000Fc1237824fb747aBDE0FF18990E59b7e)
@@ -5589,6 +6608,314 @@ export const useWatchKeyRegistryUnpausedEvent =
     abi: keyRegistryAbi,
     address: keyRegistryAddress,
     eventName: 'Unpaused',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidator =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"METADATA_TYPEHASH"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidatorMetadataTypehash =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'METADATA_TYPEHASH',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"VERSION"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidatorVersion =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'VERSION',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"domainSeparatorV4"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidatorDomainSeparatorV4 =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'domainSeparatorV4',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"eip712Domain"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidatorEip712Domain =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'eip712Domain',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"encodeMetadata"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidatorEncodeMetadata =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'encodeMetadata',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"hashTypedDataV4"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidatorHashTypedDataV4 =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'hashTypedDataV4',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"idRegistry"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidatorIdRegistry =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'idRegistry',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"owner"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidatorOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'owner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"pendingOwner"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidatorPendingOwner =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'pendingOwner',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"validate"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useReadSignedKeyRequestValidatorValidate =
+  /*#__PURE__*/ createUseReadContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'validate',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useWriteSignedKeyRequestValidator =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"acceptOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useWriteSignedKeyRequestValidatorAcceptOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'acceptOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useWriteSignedKeyRequestValidatorRenounceOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"setIdRegistry"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useWriteSignedKeyRequestValidatorSetIdRegistry =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'setIdRegistry',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useWriteSignedKeyRequestValidatorTransferOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useSimulateSignedKeyRequestValidator =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"acceptOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useSimulateSignedKeyRequestValidatorAcceptOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'acceptOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useSimulateSignedKeyRequestValidatorRenounceOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"setIdRegistry"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useSimulateSignedKeyRequestValidatorSetIdRegistry =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'setIdRegistry',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useSimulateSignedKeyRequestValidatorTransferOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useWatchSignedKeyRequestValidatorEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `eventName` set to `"EIP712DomainChanged"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useWatchSignedKeyRequestValidatorEip712DomainChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    eventName: 'EIP712DomainChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `eventName` set to `"OwnershipTransferStarted"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useWatchSignedKeyRequestValidatorOwnershipTransferStartedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    eventName: 'OwnershipTransferStarted',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useWatchSignedKeyRequestValidatorOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link signedKeyRequestValidatorAbi}__ and `eventName` set to `"SetIdRegistry"`
+ *
+ * [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x00000000FC700472606ED4fA22623Acf62c60553)
+ */
+export const useWatchSignedKeyRequestValidatorSetIdRegistryEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: signedKeyRequestValidatorAbi,
+    address: signedKeyRequestValidatorAddress,
+    eventName: 'SetIdRegistry',
   })
 
 /**

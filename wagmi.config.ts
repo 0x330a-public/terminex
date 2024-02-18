@@ -28,6 +28,14 @@ export default defineConfig({
           {
             name: "IdGateway",
             address: "0x00000000Fc25870C6eD6b6c7E41Fb078b7656f69"
+          },
+          {
+            name: "KeyGateway",
+            address: "0x00000000fC56947c7E7183f8Ca4B62398CaAdf0B"
+          },
+          {
+            name: "SignedKeyRequestValidator",
+            address: "0x00000000FC700472606ED4fA22623Acf62c60553"
           }
         ],
         chainId: optimism.id,
