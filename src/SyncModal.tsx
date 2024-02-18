@@ -33,7 +33,7 @@ export const SyncModal = ({id, callback}: SyncModalParams) => {
         <dialog id={id} className="modal">
             <div className="modal-box">
                 <h3 className="font-bold text-lg">Add a new Key via compatible app</h3>
-                <p className="py-4">Enter new key and metadata</p>
+                <p className="py-4">Enter new key</p>
                 {/*<p className="py-4">node listen: {node?.store?.peers()}</p>*/}
                 <label className={"form-control"}>
                     <textarea className={"m-2 textarea textarea-bordered"} placeholder={"Public Key: aabbcc..."}
