@@ -12,11 +12,11 @@ export const SyncModal = ({id, callback}: SyncModalParams) => {
     const [tempKey, setNewTempKey] = useState<string>("");
 
     // For debugging the contract / signature creation in signature metadata validation
-    useEffect(() => {
-        const randKey = ed25519.utils.randomPrivateKey();
-        const pubKey = ed25519.getPublicKey(randKey);
-        setNewKey(pubKey)
-    }, []);
+    // useEffect(() => {
+    //     const randKey = ed25519.utils.randomPrivateKey();
+    //     const pubKey = ed25519.getPublicKey(randKey);
+    //     setNewKey(pubKey)
+    // }, []);
 
 
     const setNewValue = (newHex: string) => {
