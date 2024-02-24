@@ -32,7 +32,7 @@ export default async function handler(
 
     return await axios.get(`${BASE_FNAME_URL}/current`, {
         params: {
-            fname
+            name: fname
         }
     }).then(
         (fnameResponse) => {
