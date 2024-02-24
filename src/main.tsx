@@ -6,6 +6,7 @@ import {createConfig, http, WagmiProvider} from "wagmi";
 import {optimism} from "viem/chains";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {ConnectKitProvider, getDefaultConfig} from "connectkit";
+import {SWRConfig} from "swr";
 
 export const CHAIN_ID = optimism.id;
 
@@ -29,7 +30,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <WagmiProvider config={config}>
             <QueryClientProvider client={queryClient}>
                 <ConnectKitProvider>
-                    <App/>
+                    <SWRConfig value={{
+                        refreshInterval: 3000,
+                        fetcher: (resource, init) => fetch(resource, init).then(res => res.json())
+                    }}>
+                        <App/>
+                    </SWRConfig>
                 </ConnectKitProvider>
             </QueryClientProvider>
         </WagmiProvider>
