@@ -1,7 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import axios, {AxiosError} from "axios";
+import {BASE_FNAME_URL} from "./const";
 
-const BASE_FNAME_URL = "https://fnames.farcaster.xyz/transfers";
+
+export interface NameResponse {
+    inUse: boolean;
+}
 
 export default async function handler(
     request: VercelRequest,
@@ -18,14 +22,20 @@ export default async function handler(
     }).then(
         (fnameResponse) => {
             console.log("data:", fnameResponse.data)
-            return response.send("OK");
+            return response.send({
+                inUse: true,
+            });
         },
         (e: AxiosError) => {
             if (e.response && e.response.status == 404) {
                 // 404 actually means unregistered
-                return response.send("OK");
+                return response.send({
+                    inUse: false,
+                });
             } else {
-                throw e;
+                return response.send( {
+                    inUse: true,
+                });
             }
         });
 }
