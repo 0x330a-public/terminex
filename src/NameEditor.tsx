@@ -24,9 +24,7 @@ const fetcher = ({url, username}: FetchParams): Promise<void|NameResponse> => {
         params: {
             fname: username
         }
-    }).then(res => {
-        res.data
-    });
+    }).then(res => res.data);
 }
 
 export const NameEditor = ({account}: NameEditorParams) => {
@@ -34,6 +32,8 @@ export const NameEditor = ({account}: NameEditorParams) => {
     const [usernameRequest, setUsernameRequest] = useState<string>("");
 
     const { data } = useSWR({ url: "/api/nameQuery", username: usernameRequest}, fetcher);
+
+    console.log(data)
 
     return (<>
         <div className={"mx-auto w-max flex flex-col"}>
