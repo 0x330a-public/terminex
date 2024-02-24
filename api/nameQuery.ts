@@ -21,7 +21,7 @@ export default async function handler(
             return response.send("OK");
         },
         (e: AxiosError) => {
-            console.error("Error:",e);
+            console.error("Error:",e.status);
             if (e.status == 404) {
                 // 404 actually means unregistered
                 return response.send("OK");
