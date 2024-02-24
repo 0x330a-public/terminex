@@ -1,1 +1,0 @@
-export const BASE_FNAME_URL = "https://fnames.farcaster.xyz/transfers";

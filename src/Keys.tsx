@@ -3,7 +3,6 @@ import {Address, bytesToHex, encodeAbiParameters, WalletClient} from "viem";
 import {keyGatewayAddress, useReadKeyRegistryKeysOf} from "./generated.ts";
 import {useWriteContract} from "wagmi";
 import {CHAIN_ID} from "./main.tsx";
-import {useEffect} from "react";
 
 const gatewayAbi = [{
     "inputs": [{
@@ -271,12 +270,6 @@ export const Keys = ({fid, account, domain, client}: KeyProps) => {
     const registeredKeys = keyData ?? [];
 
     const {writeContract: addKey, isPending: addPending, error: addError} = useWriteContract();
-
-    useEffect(() => {
-        // maybe toast this in future or sth
-        console.log("Add error:", addError);
-    }, [addError]);
-
     const modalId = "sync_modal"
     const modal = <SyncModal id={modalId} callback={async (newPubKey) => {
         const hex = bytesToHex(newPubKey);
@@ -329,7 +322,7 @@ export const Keys = ({fid, account, domain, client}: KeyProps) => {
     }}/>
 
     const gridPrototype = (key: `0x${string}`) => (
-        <div className={"card m-2 bg-neutral text-neutral-content shadow-xl"}>
+        <div key={key} className={"card m-2 bg-neutral text-neutral-content shadow-xl"}>
             <div className={"card-body"}>
                 <h2 className={"text-base"}>{key}</h2>
             </div>

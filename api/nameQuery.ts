@@ -1,10 +1,25 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import axios, {AxiosError} from "axios";
-import {BASE_FNAME_URL} from "./const";
 
+const BASE_FNAME_URL = "https://fnames.farcaster.xyz/transfers";
 
 export interface NameResponse {
     inUse: boolean;
+}
+
+interface FNameTransfer {
+    id: number,
+    timestamp: number,
+    username: string,
+    owner: `0x{string}`,
+    from: number,
+    to: number,
+    user_signature: string,
+    server_signature: string
+}
+
+interface FarcasterResponse {
+    transfer: FNameTransfer
 }
 
 export default async function handler(
@@ -21,9 +36,10 @@ export default async function handler(
         }
     }).then(
         (fnameResponse) => {
-            console.log("data:", fnameResponse.data)
+            const fnameBody: FarcasterResponse = fnameResponse.data;
             return response.send({
-                inUse: true,
+                // it's in use if the latest transfer isn't to 0 aka not disposed of
+                inUse: fnameBody.transfer.to !== 0,
             });
         },
         (e: AxiosError) => {

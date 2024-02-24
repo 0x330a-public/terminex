@@ -1,6 +1,7 @@
 import type {VercelRequest, VercelResponse} from "@vercel/node";
 import axios from "axios";
-import {BASE_FNAME_URL} from "./const";
+
+const BASE_FNAME_URL = "https://fnames.farcaster.xyz/transfers";
 
 export interface RegisterResponse {
     success: boolean,
@@ -23,7 +24,8 @@ export default async function handler(
     const requestData: RegisterRequest = request.body;
     console.log(requestData);
 
-    await axios.post(BASE_FNAME_URL, requestData);
+    const registerResponse = await axios.post(BASE_FNAME_URL, requestData);
+    console.log(registerResponse);
 
     return response.status(200);
 }

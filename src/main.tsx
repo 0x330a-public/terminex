@@ -31,8 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <QueryClientProvider client={queryClient}>
                 <ConnectKitProvider>
                     <SWRConfig value={{
-                        refreshInterval: 3000,
-                        fetcher: (resource, init) => fetch(resource, init).then(res => res.json())
+                        refreshInterval: 10000,
                     }}>
                         <App/>
                     </SWRConfig>
