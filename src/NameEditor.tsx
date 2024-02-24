@@ -38,7 +38,7 @@ export const NameEditor = ({account}: NameEditorParams) => {
     return (<>
         <div className={"mx-auto w-max flex flex-col"}>
             <div className={"text-base"}>{account}</div>
-            <div className={"text-base"}>can register: {data?.inUse === false}</div>
+            <div className={"text-base"}>can register: {data?.inUse === false ? "yes" : "no"}</div>
             <input className={"form input input-bordered w-full max-w-xs"}
                    placeholder={"Username to register"}
                    value={usernameRequest}
