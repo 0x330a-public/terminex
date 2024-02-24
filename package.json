@@ -14,6 +14,7 @@
     "@tanstack/query-sync-storage-persister": "^5.20.5",
     "@tanstack/react-query": "^5.20.5",
     "@tanstack/react-query-persist-client": "^5.20.5",
+    "axios": "^1.6.7",
     "connectkit": "^1.7.1",
     "protobufjs": "^7.2.6",
     "react": "^18.2.0",
