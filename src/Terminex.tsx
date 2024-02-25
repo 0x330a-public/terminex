@@ -74,8 +74,8 @@ export const Terminex = ({address}: TerminexProps) => {
                 </div>
             </div>
 
-            { id && address &&
-                <NameEditor account={address}/>
+            { id && client && address &&
+                <NameEditor account={address} client={client} fid={id}/>
             }
             { signedKeyRequestDomain && client && id &&
                 <Keys domain={signedKeyRequestDomain} account={address} fid={id} client={client}/>
